@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: kadai-web
-Implementation-Version: 1.0.0-SNAPSHOT
-Built-By: motoyamat
-Implementation-Vendor-Id: com.example.kadai
-Build-Jdk: 1.8.0_40
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: TERASOLUNA Framework Team
-
