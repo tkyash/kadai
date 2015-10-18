@@ -253,3 +253,31 @@ footer {
     color:#444;
   }
 }
+
+
+
+/* ------------------------------------- */
+.tbl {
+	display: table;
+	width: 100%;
+}
+
+.tbl .tbl_cell {
+	display: table-cell;
+	width: 50%;
+	height: 50px;
+}
+
+.btn-lg {
+	width: 130px;
+	text-align: center;
+	height: 40px;
+}
+
+.center{
+		text-align: center;
+}
+.right{
+		text-align: right;
+}
+

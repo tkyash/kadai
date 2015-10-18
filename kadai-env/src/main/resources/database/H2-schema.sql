@@ -1,6 +1,7 @@
 /* define the schemas. */
 
 /* t_userテーブル */
+DROP TABLE t_user;
 CREATE TABLE t_user(
     userid varchar(4),
     username varchar(20),
@@ -14,6 +15,7 @@ CREATE TABLE t_user(
 );
 
 /* t_roleテーブル */
+DROP TABLE t_role;
 CREATE TABLE t_role(
     userid varchar(4),
     role varchar(4),

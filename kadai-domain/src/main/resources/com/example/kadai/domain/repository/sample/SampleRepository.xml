@@ -4,7 +4,7 @@
 
 <mapper namespace="com.example.kadai.domain.repository.sample.SampleRepository">
 
-<!--
+
 
     <resultMap id="todoResultMap" type="Todo">
         <id property="todoId" column="todo_id" />
@@ -26,7 +26,7 @@
             todo_id = #{todoId}
     ]]>
     </select>
-
+<!--
     <select id="findAll" resultMap="todoResultMap">
     <![CDATA[
         SELECT

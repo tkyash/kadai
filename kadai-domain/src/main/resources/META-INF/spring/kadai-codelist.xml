@@ -20,5 +20,14 @@
         <property name="labelColumn" value="code_name" />
     </bean>
     -->
+    
+<bean id="CL_USERROLE"
+      class="org.terasoluna.gfw.common.codelist.EnumCodeList"> 
+    <constructor-arg value="com.example.kadai.domain.common.enums.UserRole" /> 
+</bean>
+<bean id="CL_USERSTATUS"
+      class="org.terasoluna.gfw.common.codelist.EnumCodeList"> 
+    <constructor-arg value="com.example.kadai.domain.common.enums.UserStatus" /> 
+</bean>
 
 </beans>
