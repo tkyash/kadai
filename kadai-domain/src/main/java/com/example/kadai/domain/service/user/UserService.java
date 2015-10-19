@@ -13,8 +13,8 @@ public interface UserService {
 	User findOne(String id);
 
 	List<User> findAll();
-
-	Page<User> findAll(Pageable pageable);
+	
+	Page<User> findAll(User user, Role role, Pageable pageable);
 
 	long count();
 

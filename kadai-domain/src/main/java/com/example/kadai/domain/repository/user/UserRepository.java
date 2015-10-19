@@ -2,7 +2,7 @@ package com.example.kadai.domain.repository.user;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.data.domain.Pageable;
 
 import com.example.kadai.domain.model.user.Role;
@@ -12,11 +12,9 @@ public interface UserRepository {
 
 	User findOne(String id);
 
-	List<User> findAll();
+	List<User> findAll(User entity, RowBounds rowBounds);
 
-	Page<User> findAll(Pageable pageable);
-
-	long count();
+	long count(User entity);
 
 	void create(User entity);
 
@@ -24,7 +22,11 @@ public interface UserRepository {
 
 	void delete(String id);
 
-	User findOneRole(String id);
+	Role findOneRole(String id);
+
+	List<Role> findAllRole(Role entity);
+
+	long countRole(Role entity);
 
 	void createRole(Role entity);
 

@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @ReportAsSingleViolation
-@DateTimeFormat(pattern = "yyyy/MM/dd")
+@Pattern(regexp = "[0-9]{4}/[0-9]{2}/[0-9]{2}")
 public @interface ChkBirthday {
 	String message() default "{com.example.common.validation.AlphaNumeric.message}"; // (3)
 

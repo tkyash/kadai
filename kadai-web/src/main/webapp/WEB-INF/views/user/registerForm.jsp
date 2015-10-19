@@ -10,7 +10,7 @@
 				<p>ユーザID：</p>
 			</div>
 			<div class="tbl_cell">
-				<input type="text" name="id" value="" placeholder="TODo自動採番にしたい" />
+				<form:input path="id" placeholder="TODo自動採番にしたい" />
 				<form:errors path="id" />
 			</div>
 		</div>

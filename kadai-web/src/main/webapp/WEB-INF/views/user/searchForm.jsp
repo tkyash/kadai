@@ -3,7 +3,7 @@
 	<t:messagesPanel />
 
 	<form:form action="${pageContext.request.contextPath}/user/search"
-		method="post" modelAttribute="userForm">
+		method="get" modelAttribute="userForm">
 
 		<div class="tbl">
 			<div class="tbl_cell right">

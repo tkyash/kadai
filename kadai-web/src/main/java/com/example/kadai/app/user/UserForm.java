@@ -1,13 +1,9 @@
 package com.example.kadai.app.user;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.example.kadai.app.common.check.single.annotation.ChkAddress;
 import com.example.kadai.app.common.check.single.annotation.ChkBirthday;
@@ -15,8 +11,6 @@ import com.example.kadai.app.common.check.single.annotation.ChkPassword;
 import com.example.kadai.app.common.check.single.annotation.ChkTel;
 import com.example.kadai.app.common.check.single.annotation.ChkUserId;
 import com.example.kadai.app.common.check.single.annotation.ChkUserName;
-import com.example.kadai.domain.common.enums.UserRole;
-import com.example.kadai.domain.common.enums.UserStatus;
 
 public class UserForm implements Serializable {
 
@@ -27,28 +21,37 @@ public class UserForm implements Serializable {
 
 	public static interface search {
 	};
+	public static interface delete {
+	};
 
 	@ChkUserId
+	@NotNull(groups = {register.class,delete.class})
 	private String id;
 
 	@ChkPassword(groups = register.class)
+	@NotNull(groups = register.class)
 	private String password;
 
+	@NotNull(groups = register.class)
 	private String confirmPassword;
 
 	@ChkUserName
+	@NotNull(groups = register.class)
 	private String name;
 
 	@ChkBirthday
+	@NotNull(groups = register.class)
 	private String birthday;
 
 	@ChkAddress
+	@NotNull(groups = register.class)
 	private String address;
 
 	@ChkTel
+	@NotNull(groups = register.class)
 	private String tel;
 
-	@NotNull
+	@Size(groups = register.class, min = 1, max = 2)
 	// TODO チェックボックスのリセット処理がない。
 	private String[] userRole;
 
