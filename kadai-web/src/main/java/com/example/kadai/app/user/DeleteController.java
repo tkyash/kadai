@@ -51,7 +51,13 @@ public class DeleteController {
 	}
 
 	@RequestMapping(value = "/delete", params = "form", method = RequestMethod.GET)
-	public String registerForm(UserForm form, Model model) {
+	public String registerForm(@Validated({ delete.class }) UserForm form,
+			BindingResult result, Model model) {
+
+		//TODO　もう一度表示するため、formの検索条件を引き継いだままuser/searchにとんで再検索させたいが、paramsのformが残っていて検索条件入力にとんでしまう。
+		if (result.hasErrors()) {
+			return "forward:/user/search";
+		}
 
 		User user = userService.findOne(form.getId());
 		model.addAttribute("userForm", user);
@@ -84,11 +90,11 @@ public class DeleteController {
 			return "user/deleteForm";
 		}
 
-		// TODO ここで再度取得するのは適切か？hiddenでID以外も持ち回ったほうがいいか？
-		User user = userService.findOne(form.getId());
-		model.addAttribute("userForm", user);
+		// TODO とりあえず検索画面に戻すことにする。
+		// User user = userService.findOne(form.getId());
+		// model.addAttribute("userForm", user);
 
-		return "user/deleteForm";
+		return "user/searchForm";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -100,7 +106,8 @@ public class DeleteController {
 			return "user/deleteForm";
 		}
 
-		// TODO hiddenに持っているので、対象idの改ざんを検知できない。画面の値を全部hiddenで送って、全部合致しないと削除できないようにしたほうがいいか？
+		// TODO
+		// hiddenに持っているので、対象idの改ざんを検知できない。画面の値を全部hiddenで送って、全部合致しないと削除できないようにしたほうがいいか？
 		userService.delete(form.getId());
 
 		redirectAttrs.addAttribute("id", form.getId());
@@ -114,7 +121,7 @@ public class DeleteController {
 		ResultMessages messages = ResultMessages.info().add("i.ex.an.0001", id,
 				"削除");
 		model.addAttribute(messages);
-		
+
 		return "gcommon/result";
 	}
 

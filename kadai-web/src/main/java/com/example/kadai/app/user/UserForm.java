@@ -21,11 +21,12 @@ public class UserForm implements Serializable {
 
 	public static interface search {
 	};
+
 	public static interface delete {
 	};
 
 	@ChkUserId
-	@NotNull(groups = {register.class,delete.class})
+	@NotNull(groups = { register.class, delete.class })
 	private String id;
 
 	@ChkPassword(groups = register.class)

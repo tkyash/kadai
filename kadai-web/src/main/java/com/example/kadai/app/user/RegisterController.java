@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.message.ResultMessages;
+import org.terasoluna.gfw.web.token.transaction.TransactionTokenCheck;
+import org.terasoluna.gfw.web.token.transaction.TransactionTokenType;
 
 import com.example.kadai.app.user.UserForm.register;
 import com.example.kadai.domain.model.user.Role;
@@ -29,6 +31,7 @@ import com.example.kadai.domain.service.user.UserService;
 
 @Controller
 @RequestMapping("user")
+@TransactionTokenCheck("Search")
 @SessionAttributes(types = { UserForm.class })
 public class RegisterController {
 
@@ -62,12 +65,14 @@ public class RegisterController {
 		return "redirect:/user/register";
 	}
 
+	@TransactionTokenCheck(type = TransactionTokenType.BEGIN)
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registerForm(Model model) {
 
 		return "user/registerForm";
 	}
 
+	@TransactionTokenCheck(type = TransactionTokenType.IN)
 	@RequestMapping(value = "/register", params = "confirm", method = RequestMethod.POST)
 	public String registerConfirm(
 			@Validated({ register.class, Default.class }) UserForm form,
@@ -80,12 +85,14 @@ public class RegisterController {
 		return "user/registerConfirm";
 	}
 
+	@TransactionTokenCheck(type = TransactionTokenType.IN)
 	@RequestMapping(value = "/register", params = "redo", method = RequestMethod.POST)
 	public String registerRedo(Model model) {
 
 		return "user/registerForm";
 	}
 
+	@TransactionTokenCheck(type = TransactionTokenType.IN)
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(@Validated UserForm form, BindingResult result,
 			RedirectAttributes redirectAttrs, Model model) {
@@ -106,6 +113,7 @@ public class RegisterController {
 		return "redirect:/user/register?finish";
 	}
 
+	@TransactionTokenCheck(type = TransactionTokenType.IN)
 	@RequestMapping(value = "/register", params = "finish", method = RequestMethod.GET)
 	public String registerFinish(@RequestParam("id") String id,
 			SessionStatus sessionStatus, Model model) {
